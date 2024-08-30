@@ -1,0 +1,332 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><h1>URL Shortener</h1>
+    <form action="/url" method="post">
+     <input type="text" name="url" id="">
+     <button type="submit">Generate URL</button>
+    </form>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+</head>
+
+<body>
+    <h1>URL Shortener</h1>
+    <form id="urlForm">
+        <input type="text" id="url" name="url" placeholder="Enter URL" required>
+        <button type="submit">Shorten URL</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const url = document.getElementById('url').value;
+
+            try {
+                const response = await fetch('/url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `url=${encodeURIComponent(url)}`
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('result').textContent = `Short URL is: ${data.shortURL}`;
+                } else {
+                    document.getElementById('result').textContent = `Error: ${data.message}`;
+                }
+
+                // Refresh the page after a few seconds
+                setTimeout(() => {
+                    location.reload();
+                }, 30000);
+
+            } catch (error) {
+                document.getElementById('result').textContent = 'An error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        #copyNotice {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form id="urlForm">
+            <input type="text" id="url" name="url" placeholder="Enter URL" required>
+            <button type="submit">Shorten URL</button>
+        </form>
+        <p id="result"></p>
+        <p id="copyNotice"></p>
+    </div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const url = document.getElementById('url').value;
+
+            try {
+                const response = await fetch('/url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `url=${encodeURIComponent(url)}`
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('result').innerHTML = `Short URL is: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+                    document.getElementById('copyNotice').textContent = "Please copy fast as the page reloads after 30 seconds!";
+                } else {
+                    document.getElementById('result').textContent = `Error: ${data.message}`;
+                }
+
+                // Refresh the page after 30 seconds
+                setTimeout(() => {
+                    location.reload();
+                }, 30000); // 30,000 milliseconds = 30 seconds
+
+            } catch (error) {
+                document.getElementById('result').textContent = 'An error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            overflow-wrap: break-word;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+            word-wrap: break-word;
+        }
+
+        #copyNotice {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        #result a {
+            color: #007bff;
+            text-decoration: none;
+            word-wrap: break-word;
+        }
+
+        #result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form id="urlForm">
+            <input type="text" id="url" name="url" placeholder="Enter URL" required>
+            <button type="submit">Shorten URL</button>
+        </form>
+        <p id="result"></p>
+        <p id="copyNotice"></p>
+    </div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const url = document.getElementById('url').value;
+
+            try {
+                const response = await fetch('/url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `url=${encodeURIComponent(url)}`
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (data.shortURL) {
+                        const shortUrl = `http://localhost:3000/${data.shortURL}`;
+                        document.getElementById('result').innerHTML = `Short URL is: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+                        document.getElementById('copyNotice').textContent = "Please copy fast as the page reloads after 30 seconds!";
+                        setTimeout(() => {
+                            location.reload();
+                        }, 30000); // 30 seconds
+                    }
+                } else if (response.status === 200) {
+                    const shortUrl = `http://localhost:3000/${data.shortURL}`;
+                    document.getElementById('result').innerHTML = `This URL is already shortened: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+                    document.getElementById('copyNotice').textContent = "The page will reload after 5 seconds.";
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000); // 5 seconds
+                } else {
+                    document.getElementById('result').textContent = 'An unexpected error occurred.';
+                }
+
+            } catch (error) {
+                document.getElementById('result').textContent = 'An error occurred. Please try again.';
+            }
+        });
+    </script>
+</body>
+
+</html>
