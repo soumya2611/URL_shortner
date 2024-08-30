@@ -304,7 +304,7 @@
 
                 if (response.ok) {
                     if (data.shortURL) {
-                        const shortUrl = `http://localhost:3000/${data.shortURL}`;
+                        const shortUrl = `https://url-shortner-zcw3.onrender.com/${data.shortURL}`;
                         document.getElementById('result').innerHTML = `Short URL is: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
                         document.getElementById('copyNotice').textContent = "Please copy fast as the page reloads after 30 seconds!";
                         setTimeout(() => {
@@ -312,7 +312,7 @@
                         }, 30000); // 30 seconds
                     }
                 } else if (response.status === 200) {
-                    const shortUrl = `http://localhost:3000/${data.shortURL}`;
+                    const shortUrl = `https://url-shortner-zcw3.onrender.com/${data.shortURL}`;
                     document.getElementById('result').innerHTML = `This URL is already shortened: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
                     document.getElementById('copyNotice').textContent = "The page will reload after 5 seconds.";
                     setTimeout(() => {
