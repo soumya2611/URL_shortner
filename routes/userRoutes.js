@@ -11,44 +11,6 @@ router.get('/', (req, res) => {
 
 let shortID = shortid.generate();
 
-// router.post('/url', async (req, res) => {
-//     try {
-//         const originalURL = req.body.url;
-//         await User.create({
-//             shortURL: shortID,
-//             redirectedURL: originalURL
-//         });
-//         res.send(`short url is: [ http://localhost:3000/${shortID} ]`);
-//         console.log(shortID)
-//     }
-//     catch (err){
-//         console.log(err)
-//         res.status(404).json({message:'internal server error'})
-//     }
-// })
-
-// router.post('/url', async (req, res) => {
-//     try {
-//         const originalURL = req.body.url;
-//         const existingURL = await User.findOne({ redirectedURL: originalURL });
-
-//         if (existingURL) {
-//             return res.status(400).json({ message: 'URL already exists' });
-//         }
-
-//         await User.create({
-//             shortURL: shortID,
-//             redirectedURL: originalURL
-//         });
-
-//         res.status(201).json({ message: 'URL shortened successfully', shortURL: `http://localhost:3000/${shortID}` });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ message: 'Internal server error' });
-//     }
-// });
-
-
 router.post('/url', async (req, res) => {
     try {
         const originalURL = req.body.url;
